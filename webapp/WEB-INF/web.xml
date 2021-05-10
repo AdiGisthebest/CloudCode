@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE web-app PUBLIC
+ "-//Oracle Corporation//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+    <servlet>
+        <servlet-name>demo</servlet-name>
+        <servlet-class>myapp.DemoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>demo</servlet-name>
+        <url-pattern>/demo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToFile</servlet-name>
+        <url-pattern>/ToFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToGet</servlet-name>
+        <url-pattern>/ToGet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ToFile</servlet-name>
+        <servlet-class>myapp.ToFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ToGet</servlet-name>
+        <servlet-class>myapp.ToGet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ToDel</servlet-name>
+        <servlet-class>myapp.ToDel</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ToDel</servlet-name>
+        <url-pattern>/ToDel</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LocReturn</servlet-name>
+        <servlet-class>myapp.LocReturn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LocReturn</servlet-name>
+        <url-pattern>/LocReturn</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ToOutput</servlet-name>
+        <servlet-class>myapp.ToOutput</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ToOutput</servlet-name>
+        <url-pattern>/ToOutput</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>

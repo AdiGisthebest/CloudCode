@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>
+        Homes Report
+    </title>
+    <style>
+    .tftable {  font-family: verdana;vertical-align: top;font-size:16px;color:#333333;display:inline-block;width:300px;border-width: 1px;border-color: #729ea5;border-collapse: collapse; margin-right:20px;}
+.tftable th {font-family:verdana;font-size:16px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;width:300px;}
+.tftable tr {font-family: verdana;background-color:#d4e3e5;width:300px;}
+.tftable td {font-family:verdana;font-size:16px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;width:300px;}
+.tftable tr:hover {background-color:#ffffff;}
+.tables {display-inline-block;}
+
+
+    </style>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+
+    </script>
+
+</head>
+
+
+
+<body background = "Background.png" style = "text-align:center;" ,id = "body", onload="document.getElementById('show_data').innerHTML = constructTables();">
+
+    <h1 style = "font-family:verdana" >
+        Homes Report
+    </h1>
+
+    <p id = "show_data" style =
+        "font-size: 15px; font-weight: bold;">
+    </p>
+
+ <table  id="table1", class = "tftable",border="2"> </table>
+  <table  id="table2", class = "tftable",border="2"> </table>
+
+ <table id="table3", class = "tftable",border="2" ></table>
+
+<table id="table4", class = "tftable",border="2"> </table>
+<br>
+<br>
+<br>
+ <table id="table5", class = "tftable",border="2" ></table>
+<table id="table6", class = "tftable",border="2"> </table>
+<table id="table7", class = "tftable",border="2"> </table>
+
+    <br><br>
+
+
+    <script>
+
+        function constructTables() {
+          var list;
+          const api = 'https://fair-scout-287500.wl.r.appspot.com/ToOutput?'+'Email=' + localStorage.getItem("emailid");
+          //const url = 'https://fair-scout-287500.wl.r.appspot.com/ToOutput?Email=superadig@gmail.com';
+          //alert(url);
+          /* const response = await fetch(api,  {
+              method: 'GET',
+              //mode: 'no-cors'
+            }); */
+
+            const Http = new XMLHttpRequest();
+            Http.open("GET", api);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+              if(Http.readyState === XMLHttpRequest.DONE) {
+                 console.log(Http.responseText);
+                 list = JSON.parse(Http.responseText);
+
+
+
+
+
+
+          var selector = "";
+            for (var i = 0; i < list.length && i < 7; i++) {
+              switch (i) {
+                case 0:
+                  selector = "#table1";
+                  break;
+                case 1:
+                    selector = "#table2";
+                    break;
+                case 2:
+                    selector = "#table3";
+                    break;
+                case 3:
+                    selector = "#table4";
+                    break;
+                case 4:
+                    selector = "#table5";
+                    break;
+                case 5:
+                    selector = "#table6";
+                    break;
+                case 6:
+                    selector = "#table7";
+                    break;
+                default:
+
+              }
+                var days = list[i];
+                var tr = $('<tr/>');
+                var val1 = "Date: " + days.Day;
+                if (val1 == null) val = "";
+                tr.append($('<th/>').html(val1));
+                // Adding each row to the table
+                $(selector).append(tr);
+
+                var rows = list[i].homes;
+
+                var tr2 = $('<tr/>');
+                if(rows.length == 0){
+                  var nodata2 = true;
+                }else{
+                  var nodata2 = false;
+                }
+                for (var j=0;j<rows.length || nodata2 == true;j++) {
+
+                  if(nodata2 == false){
+                  var val2 = rows[j].home;
+                }
+                if (nodata2 == true) {
+                  var nodata = "No Homes Found";
+                  tr2.append($('<tr/>').html(nodata));
+                  $(selector).append(tr2);
+                  nodata2 = false;
+
+                }else{
+
+
+
+
+                  var tableelement = val2.link("https://www.zillow.com/homes/"+ rows[j].zpid+"_zpid/");
+                  tr2.append($('<tr/>').html(tableelement));
+                  $(selector).append(tr2);
+                }
+                }
+            }    
+        }
+    }
+    return "";
+    }
+    </script>
+</body>
+
+</html>

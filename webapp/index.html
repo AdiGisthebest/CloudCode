@@ -1,0 +1,75 @@
+<html>
+
+  <head>
+    <meta name="google-signin-client_id" content="382395346668-a4le9nkt3k8j5qgq1gi8mv54aoucogbr.apps.googleusercontent.com">
+    <script src = "https://apis.google.com/js/platform.js" async defer ></script>
+  </head>
+  <style>
+  body{
+      background-size:cover;
+  }
+  div{
+
+
+    margin:auto
+  }
+.center{
+  text-align:center;
+}
+  </style>
+  <body background = "Background.png" >
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  <h1 class = "center">
+  Sign in 
+</h1>
+<h4 class = "center">(please sigin to get to the input page)</h4>
+
+
+
+    <div  class = "g-signin2" data-onsuccess = "onSignin2" > </div>
+
+
+    <script>
+
+      function onSignin2 (googleUser){
+
+
+
+          var a = googleUser.getBasicProfile().getEmail();
+          localStorage.setItem("emailid",a);
+          localStorage.setItem("redirect","false");
+          window.location.href = "HouseFilter.html";
+      }
+
+      </script>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+  </body>
+
+</html>

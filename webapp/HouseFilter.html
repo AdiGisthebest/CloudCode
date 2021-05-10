@@ -1,0 +1,269 @@
+<html>
+<head>
+<title>Page Title</title>
+
+<style>
+body{
+
+  background-size:cover;
+}
+.box{
+  width:1500px;
+  height:700px;
+  padding:20px;
+  background-color: white;
+  margin: 100px auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 40px 8px grey;
+  vertical-align: middle ;
+}
+
+.option{
+  font-family:verdana;
+  color: black;
+}
+.goption{
+  font-family:verdana;
+  color:black;
+  font-size: 10px;
+}
+.doption{
+  font-family:verdana;
+  color:black;
+  font-size: 8px;
+}
+.button2 {
+  background-color: #fa8b2f;
+  font-family:verdana;
+  color: white;
+  width:150px;
+  height:30px;
+  border:0;
+
+  text-align: center;
+  border-radius: 5px;
+  display: block;
+  font-size: 16px;
+
+  position:absolute;
+   left:1400px;
+   top:260px;
+}
+</style>
+<style>
+div.a{
+  right: 0;
+}
+</style>
+<body onload = "MyFunction()" background = "Home.png" >
+
+<script>
+  function MyFunction(){
+    if(localStorage.getItem("redirect") == null)
+    {    document.write("hello");
+        window.location.href = "index.html";
+      }else{
+
+
+      const api4 = 'https://fair-scout-287500.wl.r.appspot.com/LocReturn?'+'Email='+localStorage.getItem("emailid");
+      const Http = new XMLHttpRequest();
+          Http.open("GET", api4);
+          Http.send();
+
+        Http.onreadystatechange = (e) => {
+           if(Http.readyState === XMLHttpRequest.DONE) {
+              console.log(Http.responseText);
+              localStorage.setItem("locations",Http.responseText);
+              opylength = JSON.parse(Http.responseText).length;
+              document.getElementById("number").innerHTML = opylength;
+
+            }
+          }
+
+        }
+
+  }
+
+</script>
+<br>
+<br>
+<br>
+
+
+<div class = "box">
+<h3>
+
+  <label for="citylabel" class = "option">City:</label>
+  <input type="text" id="city"   name="cityname"><br><br>
+  <div style="position:absolute; left:1400px;top:210px;color:green;font-family:'verdana';">  You have <span id = "number"> </span> locations</div>
+  <button class = "button2" onclick = "window.location.href = ' https://fair-scout-287500.wl.r.appspot.com/Delete.html';" type = "button">Delete</button>
+
+
+  <label for="statelabel" class = "option">State:</label>
+  <input type="text" id ="state" name ="statename"<br><br>
+
+  <br>
+  <div class = "goption"> State is the 2 char abbreviation. Ex: CA for California </div>
+  <br>
+  <br>
+  <label for="pricelabel2"class = "option">Beds:</label>
+  <select id="beds" name="Beds" size="1">
+  <option class = "option" value = "1">1</option>
+  <option class = "option" value="2">2</option>
+  <option class = "option" value="3">3</option>
+  <option class = "option" value="4">4</option>
+  <option class = "option" value="5">5</option>
+  </select>
+  <br>
+  <br>
+  <label class = "option" for="pricelabel2">Baths:</label>
+  <select id="baths" name="Baths" size="1">
+  <option class = "option"value = "1">1</option>
+  <option class = "option"value="2">2</option>
+  <option class = "option"value="3">3</option>
+  <option class = "option"value="4">4</option>
+  <option class = "option"value="5">5</option>
+  </select>
+  <br>
+  <br>
+  <label  for="pricelabel" class = "option">Min Price: </label>
+  <select id = "miprice" name="minprice" size="1">
+  <option class = "option"value="25000">25K</option>
+  <option class = "option"value="50000">50K</option>
+  <option class = "option"value="75000">75K</option>
+  <option class = "option"value="100000">100K</option>
+  <option class = "option"value="125000">125K</option>
+  <option class = "option"value="150000">150K</option>
+  <option class = "option"value="200000">200K</option>
+  <option class = "option"value="250000">250K</option>
+  <option class = "option"value="300000">300K</option>
+  <option class = "option"value="400000">400K</option>
+  <option class = "option"value="500000">500K</option>
+  >
+
+  </select><br><br>
+  <label for="pricelabel2"class = "option">Max Price:</label>
+  <select id="maprice" name="maxprice" size="1">
+  <option class = "option"value= "100000">100K</option>
+  <option class = "option"value= "150000">150K</option>
+  <option class = "option"value= "200000">200K</option>
+  <option class = "option"value= "250000">250K</option>
+  <option class = "option"value= "350000">350K</option>
+  <option class = "option"value= "450000">450K</option>
+  <option class = "option"value= "550000">550K</option>
+  <option class = "option"value= "650000">650K</option>
+  <option class = "option"value="750000">750K</option>
+  <option class = "option"value="850000">850K</option>
+  <option class = "option"value="950000">950K</option>
+  <option class = "option"value="1000000">1M</option>
+  </select>
+  <br>
+  <br>
+  <div class = "doption">(the larger the maxprice the more homes the program has to filter and hence you will wait longer for your results)</div>
+  <br>
+
+  <label for="pricelabel3"class = "option">Year Built:</label>
+  <select id="Year" name="YearBuilt" size="1">
+  <option class = "option"value ="1940">1940</option>
+  <option class = "option"value="1950">1950</option>
+  <option class = "option"value="1960">1960</option>
+  <option class = "option"value="1970">1970</option>
+  <option class = "option"value="1980">1980</option>
+  <option class = "option"value="1990">1990</option>
+  <option class = "option"value="2000">2000</option>
+  <option class = "option"value= "2010">2010</option>
+  <option class = "option"value= "2020">2020</option>
+  </select>
+
+  </h2>
+  <h5><label class = "option"for="cond">Filter Condition:</label>
+  <label class = "option"for="ex">(Example: For every 10K in price of the house, want $1000 of rent)</label></h5>
+  <h5><label class = "option"for="condition">For every 10k in price, should get </label>
+  <input type="text" id="filterrent" name="filterrent">
+  <label class = "option"for="renttext">of rent. </label></h5>
+  <h6><label class = "option"for ="ex2">(please do not enter with any K symbol or a comms in the textbox.)<h6>
+  <h3><label class = "option"for ="ex2">(If you don't have a filterrent leave the box empty)<h3>
+  <br>
+  <br>
+
+  <style>
+  .body{
+    text-align:center;
+  }
+  .button {
+    background-color: #fa8b2f;
+    font-family:verdana;
+    color: white;
+    width:200px;
+    height:50px;
+    border:0;
+
+    text-align: center;
+    border-radius: 5px;
+    display: block;
+    font-size: 16px;
+
+    margin-left:auto;
+  }
+
+  </style>
+  <button style = "font-family: 'verdana' "class = "button"type="button" onclick = "MyFunction2()">Add City</button>
+  <h3 id="demo6"></h3>
+  <a style = "font-family: 'verdana' "href = "Output.html" id = "link"></a>
+
+
+</div>
+
+
+
+
+<script>
+    function MyFunction2() {
+
+       var obj = new Object();
+       obj.username = localStorage.getItem("emailid");
+       obj.city = document.getElementById("city").value.toLowerCase();
+       obj.state = document.getElementById("state").value.toUpperCase();
+       obj.beds = document.getElementById("beds").value;
+       obj.baths = document.getElementById("baths").value;
+       obj.minprice = document.getElementById("miprice").value;
+       obj.price = document.getElementById("maprice").value;
+       obj.year = document.getElementById("Year").value;
+       if(document.getElementById("filterrent").value == ""){
+
+         obj.filterrent = "10000";
+       }else{
+
+
+       obj.filterrent = document.getElementById("filterrent").value;
+     }
+
+     if(document.getElementById("maprice").value - document.getElementById("miprice").value  > 500000){
+
+       alert("please have your price range (minprice and max price) below $500K");
+     }else if (document.getElementById("city").value == "" || document.getElementById("state").value == ""){
+       alert("Please complete the Input Page fully");
+     }else if(document.getElementById("state").value.length != 2){
+       alert("Make sure your state textbox has the 2 character abbreviation");
+     }else if((parseInt(document.getElementById("miprice").value,10)) > (parseInt(document.getElementById("maprice").value,10))){
+       alert("make sure your minprice is smaller than your maxprice");
+     }else{
+       var jsonstring = JSON.stringify(obj);
+       const api = 'https://fair-scout-287500.wl.r.appspot.com/ToFile?'+'Email=' + localStorage.getItem("emailid")
+     + '&Pricerange=' + parseInt(document.getElementById("maprice").value - document.getElementById("miprice").value,10)  +'&JSONStr=' + jsonstring+'&location='+document.getElementById("city").value+","+document.getElementById("state").value;
+      fetch(api);
+       //document.getElementById("demo6").innerHTML = "The value for number is:".concat(api);
+       alert ("Succesfully added your criteria. Check output in half an hour.");
+       //document.getElementById("demo6").innerHTML = jsonstring;
+       document.getElementById("link").innerHTML = "click here in 10 minutes to see what homes you have";
+       const api2 = 'https://fair-scout-287500.wl.r.appspot.com/demo?'+'Email='+localStorage.getItem("emailid");
+       fetch(api2);
+        localStorage.setItem("redirect",null);
+      }
+    }
+
+  </script>
+
+
+</body>
+</html>
